@@ -17,3 +17,11 @@
 	float: left;
 	width: 680px;
 }
+
+ul {
+	list-style: none;
+}
+
+.category ul {
+	padding-left: 20px;
+}

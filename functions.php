@@ -20,7 +20,7 @@ function map_tree($dataset)
 			$tree[$id] = &$node;
 		} else {
 			$dataset[$node['parent']]['childs'][$id] = &$node;
-		}		
+		}
 	}
 
 	return $tree;
@@ -40,4 +40,25 @@ function get_cat()
 		$arr_cat[$row['id']] = $row;
 	}
 	return $arr_cat;
+}
+
+/**
+ * Массив в структуру HTML
+ */
+function categories_to_string($data)
+{
+	foreach ($data as $item) {
+		$string .= categories_to_template($item);
+	}
+	return $string;
+}
+
+/**
+ * Шаблон вывода категорий
+ */
+function categories_to_template($category)
+{
+	ob_start();
+	include 'category_template.php';
+	return ob_get_clean();
 }
