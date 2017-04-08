@@ -27,6 +27,7 @@ function map_tree($dataset)
 }
 
 /**
+ * Получение массива категорий
  * @return array Получение массива категорий
 */
 function get_cat()
@@ -61,4 +62,23 @@ function categories_to_template($category)
 	ob_start();
 	include 'category_template.php';
 	return ob_get_clean();
+}
+
+/**
+ * хлебные крошки
+ * @return true (array not empty) || return false;
+ */
+function breadcrumbs($array, $id)
+{
+	if (!$id) return false;
+
+	$count = count($array);
+	$breadcrumbs_array = array();
+	for ($i = 0; $i < $count; $i++) {
+		if (isset($array[$id])) {
+			$breadcrumbs_array[$array[$id]['id']] = $array[$id]['title'];
+			$id = $array[$id]['parent'];
+		} else break;
+	}
+	return array_reverse($breadcrumbs_array, true);
 }

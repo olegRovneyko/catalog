@@ -1,11 +1,6 @@
 <?php
 
-include 'config.php';
-include 'functions.php';
-
-$categories = get_cat();
-$categories_tree = map_tree($categories);
-$categories_menu = categories_to_string($categories_tree);
+include 'catalog.php';
 
 ?>
 <!DOCTYPE html>
@@ -24,6 +19,8 @@ $categories_menu = categories_to_string($categories_tree);
 			</ul>
 		</div>
 		<div class="content">
+			<p><?= $breadcrumbs; ?></p>
+			<br><hr>
 			<?php print_arr($categories_tree); ?>
 		</div>
 	</div>
