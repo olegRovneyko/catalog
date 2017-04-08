@@ -105,16 +105,16 @@ function cats_id($array, $id)
 /**
  * Получение товаров
  * @param  string $ids [description]
- * @return [type]      [description]
+ * @return aray      [description]
  */
-function get_product($ids = false)
+function get_product($ids, $start_pos, $perpage)
 {
 	global $connection;
 
 	if ($ids) {
-		$query = 'SELECT * FROM products WHERE parent IN (' . $ids . ') ORDER BY title';
+		$query = 'SELECT * FROM products WHERE parent IN (' . $ids . ') ORDER BY title LIMIT ' . $start_pos . ', ' . $perpage;
 	} else {
-		$query = 'SELECT * FROM products ORDER BY title';
+		$query = 'SELECT * FROM products ORDER BY title LIMIT ' . $start_pos . ', ' . $perpage;;
 	}
 	$res = mysqli_query($connection, $query);
 	$products = array();
@@ -122,4 +122,34 @@ function get_product($ids = false)
 		 $products[] =$row;
 	}
 	return $products;
+}
+
+/**
+ * Кол-во товаров
+ * @param  [type] $ids [description]
+ * @return [type]      [description]
+ */
+function count_goods($ids)
+{
+	global $connection;
+
+	if (!$ids) {
+		$query = 'SELECT COUNT(*) FROM products';
+	} else {
+		$query = 'SELECT COUNT(*) FROM products WHERE parent IN (' . $ids . ')';
+	}
+	$res = mysqli_query($connection, $query);
+	$count_goods = mysqli_fetch_row($res);
+	return $count_goods[0];
+}
+
+/**
+ * Постраничная навигация
+ * @param  [type] $page        [description]
+ * @param  [type] $count_pages [description]
+ * @return [type]              [description]
+ */
+function pagination($page, $count_pages)
+{
+	return 'Постраничная навигация';
 }

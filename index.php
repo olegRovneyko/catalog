@@ -23,6 +23,7 @@ include 'catalog.php';
 			<br>
 
 			<hr>
+			<div class="pagination"><?= $pagination ?></div>
 			<?php if ($products) : ?>
 				<?php foreach ($products as $product) : ?>
 					<a href="?product=<?= $product['id'] ?>"><?= $product['title'] ?></a><br>
