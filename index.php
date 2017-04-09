@@ -21,12 +21,21 @@ include 'catalog.php';
 		<div class="content">
 			<p><?= $breadcrumbs; ?></p>
 			<br>
-
 			<hr>
-			<?php if ($count_pages > 1) : ?>
-				<div class="pagination"><?= $pagination ?></div>
-			<?php endif; ?>
+
+
 			<?php if ($products) : ?>
+				<div>
+					<select name="perpage" id="perpage">
+						<?php foreach ($option_perpage as $option) : ?>
+							<option <?php if ($perpage == $option) echo "selected" ?> value="<?= $option ?>"><?= $option ?> товаров на страницу</option>
+						<?php endforeach; ?>
+					</select>
+				</div>
+				<?php if ($count_pages > 1) : ?>
+					<div class="pagination"><?= $pagination ?></div>
+				<?php endif; ?>
+
 				<?php foreach ($products as $product) : ?>
 					<a href="<?= PATH ?>product.php?product=<?= $product['id'] ?>"><?= $product['title'] ?></a><br>
 				<?php endforeach; ?>
@@ -44,6 +53,11 @@ include 'catalog.php';
 	<script>
 		$(document).ready(function() {
 			$(".category").dcAccordion();
+			$("#perpage").change(function() {
+				var perPage = $(this).val();
+				$.cookie('per_page', perPage, {expires: 7});
+				window.location = location.href;
+			});
 		});
 	</script>
 </body>
