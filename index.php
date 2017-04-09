@@ -37,7 +37,7 @@ include 'catalog.php';
 				<?php endif; ?>
 
 				<?php foreach ($products as $product) : ?>
-					<a href="<?= PATH ?>product.php?product=<?= $product['id'] ?>"><?= $product['title'] ?></a><br>
+					<a href="<?= PATH ?>product/<?= $product['id'] ?>"><?= $product['title'] ?></a><br>
 				<?php endforeach; ?>
 			<?php else : ?>
 				<p>Здесь товаров нет</p>

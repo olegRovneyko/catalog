@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteBase /
+RewriteRule ^product/(\d+)/?$ product.php?product=$1
+RewriteRule ^category/(\d+) ?category=$1 [QSA]
