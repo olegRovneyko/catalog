@@ -21,20 +21,11 @@ include 'catalog.php';
 		<div class="content">
 			<p><?= $breadcrumbs; ?></p>
 			<br>
-
 			<hr>
-			<?php if ($count_pages > 1) : ?>
-				<div class="pagination"><?= $pagination ?></div>
-			<?php endif; ?>
-			<?php if ($products) : ?>
-				<?php foreach ($products as $product) : ?>
-					<a href="<?= PATH ?>product.php?product=<?= $product['id'] ?>"><?= $product['title'] ?></a><br>
-				<?php endforeach; ?>
+			<?php if (isset($get_one_product)) : ?>
+				<?php print_arr($get_one_product) ?>
 			<?php else : ?>
-				<p>Здесь товаров нет</p>
-			<?php endif; ?>
-			<?php if ($count_pages > 1) : ?>
-				<div class="pagination"><?= $pagination ?></div>
+				Такого товара нет
 			<?php endif; ?>
 		</div>
 	</div>

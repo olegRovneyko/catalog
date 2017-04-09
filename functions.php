@@ -125,6 +125,20 @@ function get_product($ids, $start_pos, $perpage)
 }
 
 /**
+ * Получение отдельного товара
+ * @param  int $product_id [description]
+ * @return array             [description]
+ */
+function get_one_product($product_id)
+{
+	global $connection;
+
+	$query = 'SELECT * FROM products WHERE id = ' . $product_id . ' LIMIT 1';
+	$res = mysqli_query($connection, $query);
+	return mysqli_fetch_assoc($res);
+}
+
+/**
  * Кол-во товаров
  * @param  [type] $ids [description]
  * @return [type]      [description]
