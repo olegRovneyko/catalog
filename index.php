@@ -23,13 +23,18 @@ include 'catalog.php';
 			<br>
 
 			<hr>
-			<div class="pagination"><?= $pagination ?></div>
+			<?php if ($count_pages > 1) : ?>
+				<div class="pagination"><?= $pagination ?></div>
+			<?php endif; ?>
 			<?php if ($products) : ?>
 				<?php foreach ($products as $product) : ?>
 					<a href="?product=<?= $product['id'] ?>"><?= $product['title'] ?></a><br>
 				<?php endforeach; ?>
 			<?php else : ?>
 				<p>Здесь товаров нет</p>
+			<?php endif; ?>
+			<?php if ($count_pages > 1) : ?>
+				<div class="pagination"><?= $pagination ?></div>
 			<?php endif; ?>
 		</div>
 	</div>

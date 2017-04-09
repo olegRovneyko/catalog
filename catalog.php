@@ -52,6 +52,9 @@ if ($page > $count_pages) $page = $count_pages;
 // начальная позиция для запроса
 $start_pos = ($page - 1) * $perpage;
 
+$pagination = pagination($page, $count_pages);
+
+/*=============Пагинация=============*/
+
 $products = get_product($ids, $start_pos, $perpage);
 
-$pagination = pagination($page, $count_pages);
