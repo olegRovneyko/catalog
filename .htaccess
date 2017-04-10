@@ -1,4 +1,5 @@
 RewriteEngine On
 RewriteBase /
-RewriteRule ^product/(\d+)/?$ product.php?product=$1
+#RewriteRule ^product/(\d+)/?$ product.php?product=$1
+RewriteRule ^product/([-a-z0-9]+)$ product.php?product=$1
 RewriteRule ^category/(\d+) ?category=$1 [QSA]
