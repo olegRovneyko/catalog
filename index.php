@@ -1,7 +1,12 @@
 <?php
+error_reporting(E_ALL);
+
 define('CATALOG', true);
 include 'config.php';
 include 'functions.php';
+
+$id = null;
+$product_alias = null;
 
 $routes = array(
 	array('url' => '~^$|^\?~', 'view' => 'category'),
@@ -62,7 +67,7 @@ $ids = $ids ? rtrim($ids, ',') : $id;
 
 /*=============Пагинация=============*/
 // кол-во товаров на страницу
-$perpage = $_COOKIE['per_page'] ? $_COOKIE['per_page'] : PERPAGE;
+$perpage = (isset($_COOKIE['per_page']) && (int)$_COOKIE['per_page']) ? $_COOKIE['per_page'] : PERPAGE;
 
 // общее кол-во товаров
 $count_goods = count_goods($ids);

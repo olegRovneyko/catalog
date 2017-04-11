@@ -48,6 +48,7 @@ function get_cat()
  */
 function categories_to_string($data)
 {
+	$string = '';
 	foreach ($data as $item) {
 		$string .= categories_to_template($item);
 	}
@@ -93,6 +94,7 @@ function cats_id($array, $id)
 {
 	if (!$id) return false;
 
+	$data = '';
 	foreach ($array as $item) {
 		if ($item['parent'] == $id) {
 			$data .= $item['id'] . ',';
@@ -167,14 +169,14 @@ function count_goods($ids)
 function pagination($page, $count_pages, $modrew = true)
 {
 	// << < 3 4 5 6 7 > >>
-	// $startpage
-	// $back
-	// $page2left
-	// $page1left
-	// $page1right
-	// $page2right
-	// $forward
-	// $endpage
+	$startpage = null;
+	$back = null;
+	$page2left = null;
+	$page1left = null;
+	$page1right = null;
+	$page2right = null;
+	$forward = null;
+	$endpage = null;
 
 	$uri = '?';
 	if (!$modrew) {
