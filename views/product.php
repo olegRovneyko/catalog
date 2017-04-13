@@ -9,10 +9,8 @@
 <body>
 	<a href="<?= PATH ?>">Главная</a>
 	<div class="wrapper">
-		<div class="sidebar">
-			<ul class="category">
-				<?php echo $categories_menu; ?>
-			</ul>
+		<div class="sidebar">			
+				<?php include 'sidebar.php'; ?>
 		</div>
 		<div class="content">
 			<p><?= $breadcrumbs; ?></p>
