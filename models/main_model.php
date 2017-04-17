@@ -30,6 +30,23 @@ function map_tree($dataset)
 }
 
 /**
+ * Получение страниц меню
+ * @return array [description]
+ */
+function get_pages()
+{
+	global $connection;
+	$query = 'SELECT title, alias FROM pages ORDER BY position';
+	$res = mysqli_query($connection, $query);
+
+	$pages = array();
+	while ($row = mysqli_fetch_assoc($res)) {
+		$pages[$row['alias']] = $row['title'];
+	}
+	return $pages;
+}
+
+/**
  * Получение массива категорий
  * @return array Получение массива категорий
 */

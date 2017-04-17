@@ -3,16 +3,16 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Каталог</title>
+	<title><?= strip_tags($breadcrumbs) ?></title>
 	<link rel="stylesheet" href="<?= PATH ?>views/style.css">
 </head>
 <body>
-	<a href="<?= PATH ?>">Главная</a>
 	<div class="wrapper">
 		<div class="sidebar">
 			<?php include 'sidebar.php'; ?>
 		</div>
 		<div class="content">
+			<?php include 'menu.php' ?>
 			<p><?= $breadcrumbs; ?></p>
 			<br>
 			<hr>

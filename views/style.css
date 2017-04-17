@@ -58,3 +58,16 @@ ul {
 	color: #fff;
 	border-color: ;
 }
+
+.menu {
+	margin: 0 0 20px;
+}
+
+.menu li {
+	display: inline;
+	margin: 0 20px 0 0;
+}
+
+.menu li a:hover {
+	text-decoration: none;
+}
