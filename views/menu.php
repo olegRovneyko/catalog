@@ -8,5 +8,4 @@
 			<li><a href="<?php echo PATH . 'page/' . $link ?>"><?= $item_page ?></a></li>
 	<?php endif; ?>
 	<?php endforeach; ?>
-	<li><a href="<?php echo PATH . 'category/' ?>">Каталог</a></li>
 </ul>
