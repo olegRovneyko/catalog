@@ -21,6 +21,15 @@
 			<?php else : ?>
 				Такого товара нет
 			<?php endif; ?>
+			<hr>
+			<h3>Отзывы к товару (<?php
+				if (!empty($get_comments)) {
+					echo count($get_comments);
+				} else {
+					echo 0;
+				}
+			?>)</h3>
+			<ul class="comments"><?php echo $comments; ?></ul>
 		</div>
 	</div>
 	<script src="<?= PATH ?>views/js/jquery-1.9.0.min.js"></script>

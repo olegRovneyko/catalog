@@ -71,3 +71,24 @@ ul {
 .menu li a:hover {
 	text-decoration: none;
 }
+
+/* comments */
+.comments {
+	margin: 20px;
+	word-wrap: break-word;
+}
+
+.comment-content {
+	border-bottom: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	margin: 10px 0 0;
+	padding: 10px;
+}
+
+.comments ul {
+	padding-left: 20px;
+}
+
+.comments .manager span {
+	color: red;
+}

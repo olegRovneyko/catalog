@@ -1,8 +1,8 @@
 <?php
-error_reporting(E_ALL & ~E_NOTICE);
+//error_reporting(E_ALL & ~E_NOTICE);
+error_reporting(E_ALL);
 
 define('CATALOG', true);
-include 'config.php';
 
 $product_alias = null;
 

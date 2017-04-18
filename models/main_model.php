@@ -66,11 +66,11 @@ function get_cat()
 /**
  * Массив в структуру HTML
  */
-function categories_to_string($data)
+function array_to_string($data, $template = 'category_template.php')
 {
 	$string = '';
 	foreach ($data as $item) {
-		$string .= categories_to_template($item);
+		$string .= categories_to_template($item, $template);
 	}
 	return $string;
 }
@@ -78,10 +78,10 @@ function categories_to_string($data)
 /**
  * Шаблон вывода категорий
  */
-function categories_to_template($category)
+function categories_to_template($data, $template)
 {
 	ob_start();
-	include 'views/category_template.php';
+	include 'views/' . $template;
 	return ob_get_clean();
 }
 
