@@ -65,11 +65,12 @@
 			$(".open-form").click(function() {
 				$( "#form-wrap" ).dialog('open');
 				var parent = $(this).children().attr('data');
+				$this = $(this);
 				if (!parseInt(parent)) parent = 0;
 				$('input[name="parent"]').val(parent);
 			});
 
-			$( "#form-wrap" ).dialog({
+			$("#form-wrap").dialog({
 				autoOpen: false,
 				width: 450,
 				modal: true,
@@ -104,7 +105,24 @@
 								},
 								success: function(res) {
 									var result = JSON.parse(res);
-									console.log(result);
+									var showComment = '<li class="new-comment" id="comment-"' + result.id + '>' + result.code + '</li>';
+									if (parent == 0) {
+										// если это не ответ
+										$('ul.comments').append(showComment);
+									} else {
+										// если это ответ
+										// раходим родителя LI
+										var parentComment = $this.closest('li');
+										// есть ли ответы
+										var childs = parentComment.children('ul');
+										if (childs.length) {
+											// если ответы есть
+											childs.append(showComment);
+										} else {
+											// если ответов нет
+											parentComment.append('<ul>' + showComment + '</ul>');
+										}
+									}
 								},
 								error: function() {
 									alert('Ошибка!');

@@ -27,7 +27,7 @@ function get_comments($product_id)
 {
 	global $connection;
 
-	$query = 'SELECT * FROM comments WHERE comment_product = ' . $product_id;
+	$query = 'SELECT * FROM comments WHERE comment_product = ' . $product_id . ' ORDER BY comment_id';
 	$res = mysqli_query($connection, $query);
 
 	$comments = array();

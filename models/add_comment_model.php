@@ -29,10 +29,40 @@ function add_comment()
 		VALUES ('$comment_author', '$comment_text', $parent, $comment_product)";
 	mysqli_query($connection, $query);
 	if (mysqli_affected_rows($connection) > 0) {
-		$res = array('answer' => 'Комментарий добавлен');
-		return json_encode($res);
+		$comment_id = mysqli_insert_id($connection);
+		$comment_html = get_last_comment($comment_id);
+		return $comment_html;
 	} else {
 		$res = array('answer' => 'Ошибка добавления комментария');
 		return json_encode($res);
 	}
+}
+
+/**
+ * получение добавленного коментария
+ * @param  [type] $comment_id [description]
+ * @return [type]             [description]
+ */
+function get_last_comment($comment_id)
+{
+	global $connection;
+	$query = 'SELECT * FROM comments WHERE comment_id = ' . $comment_id;
+	$res = mysqli_query($connection, $query);
+	$comment = mysqli_fetch_assoc($res);
+
+	$comment_html = '<div class="comment-content">';
+
+	$comment_html .= '<div class="comment-meta">';
+	$comment_html .= '<em><strong><span>' . htmlspecialchars($comment['comment_author']) . '</span></strong>' . $comment['created'] . '</em>';
+	$comment_html .= '</div>';
+
+	$comment_html .= '<div>';
+	$comment_html .= '<p>' . nl2br(htmlspecialchars($comment['comment_text'])) . '</p>';
+	$comment_html .= '</div>';
+
+	$comment_html .= '</div>';
+
+	$res = array('answer' => 'Комментарий добавлен', 'code' => $comment_html, 'id' => $comment_id);
+
+	return json_encode($res);
 }
