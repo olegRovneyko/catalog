@@ -31,13 +31,13 @@
 				}
 			?>)</h3>
 			<ul class="comments">
-				<?php echo $comments; ?>				
+				<?php echo $comments; ?>
 			</ul>
 
 			<button class="open-form">Добавить отзыв</button>
 
 			<div id="form-wrap">
-				<form action="<?= PATH ?>add_comment.php" method="POST" class="form">
+				<form action="<?= PATH ?>add_comment" method="POST" class="form">
 					<p>
 						<label for="comment_author">Имя:</label>
 						<input type="text" name="comment_author" id="comment_author">
@@ -92,6 +92,24 @@
 
 							$('#comment_text').val('');
 							$(this).dialog('close');
+
+							$.ajax({
+								url: "<?= PATH ?>add_comment",
+								type: 'POST',
+								data: {
+									commentAuthor: commentAuthor,
+									commentText: commentText,
+									parent: parent,
+									productId: productId
+								},
+								success: function(res) {
+									var result = JSON.parse(res);
+									console.log(result);
+								},
+								error: function() {
+									alert('Ошибка!');
+								}
+							});
 					},
 					'Отмена': function() {
 						$('#comment_text').val('');
