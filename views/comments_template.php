@@ -8,7 +8,9 @@
 		</div>
 		<div>
 			<p><?= nl2br(htmlspecialchars($data['comment_text'])) ?></p>
-			<a href="#<?= $data['comment_id'] ?>">Ответить</a>
+			<p class="open-form">
+				<a data="<?= $data['comment_id'] ?>" class="reply">Ответить</a>
+			</p>
 		</div>
 	</div>
 	<?php if (isset($data['childs']) && $data['childs']) : ?>
