@@ -190,3 +190,36 @@ button.open-form:hover,
 #error-comment {
 	color: red;
 }
+
+.auth {
+	margin: 0 0 20px;
+}
+
+.auth label,
+.auth input {
+	width: auto;
+	float: none;
+	display: block;
+}
+
+.auth p {
+	margin: 0;
+}
+
+p.submit {
+	margin: 5px 0 0;
+}
+
+.error {
+	padding: 5px;
+	border: 1px dashed gray;
+	background: #ffeded;
+	color: #7f5354;
+}
+
+.ok {
+	padding: 5px;
+	border: 1px solid #adc092;
+	background: #f0faf1;
+	color: #58715e;
+}

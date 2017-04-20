@@ -12,6 +12,17 @@ function print_arr($arr)
 }
 
 /**
+ * [redirect description]
+ * @return [type] [description]
+ */
+function redirect()
+{
+	$redirect = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : PATH;
+	header('Location: ' . $redirect);
+	exit;
+}
+
+/**
 	* функция построения дерева из массива
 */
 function map_tree($dataset)

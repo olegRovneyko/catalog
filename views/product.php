@@ -118,8 +118,6 @@
 								success: function(res) {
 									var result = JSON.parse(res);
 
-									console.log(result);
-
 									if (result.answer == 'Комментарий добавлен') {
 										// если комментарий добавлен
 										var showComment = '<li class="new-comment" id="comment-' + result.id + '">' + result.code + '</li>';
