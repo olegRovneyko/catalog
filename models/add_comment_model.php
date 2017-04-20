@@ -50,17 +50,9 @@ function get_last_comment($comment_id)
 	$res = mysqli_query($connection, $query);
 	$comment = mysqli_fetch_assoc($res);
 
-	$comment_html = '<div class="comment-content">';
-
-	$comment_html .= '<div class="comment-meta">';
-	$comment_html .= '<em><strong><span>' . htmlspecialchars($comment['comment_author']) . '</span></strong> ' . $comment['created'] . '</em>';
-	$comment_html .= '</div>';
-
-	$comment_html .= '<div>';
-	$comment_html .= '<p>' . nl2br(htmlspecialchars($comment['comment_text'])) . '</p>';
-	$comment_html .= '</div>';
-
-	$comment_html .= '</div>';
+	ob_start();
+	include 'views/new_comment_template.php';
+	$comment_html = ob_get_clean();
 
 	$res = array('answer' => 'Комментарий добавлен', 'code' => $comment_html, 'id' => $comment_id);
 

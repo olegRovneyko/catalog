@@ -29,4 +29,6 @@ if (empty($match)) {
 }
 
 extract($match);
+
+include_once 'config.php';
 include 'controllers/' . $view . '_controller.php';
