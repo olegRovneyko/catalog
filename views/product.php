@@ -23,13 +23,7 @@
 				Такого товара нет
 			<?php endif; ?>
 			<hr>
-			<h3>Отзывы к товару (<?php
-				if (!empty($get_comments)) {
-					echo count($get_comments);
-				} else {
-					echo 0;
-				}
-			?>)</h3>
+			<h3>Отзывы к товару (<?= $count_comments ?>)</h3>
 			<ul class="comments">
 				<?php echo $comments; ?>
 			</ul>
@@ -52,6 +46,10 @@
 					</p> -->
 				</form>
 			</div>
+
+			<div id="loader"><span></span></div>
+			<div id="error-comment"></div>
+
 		</div>
 	</div>
 	<script src="<?= PATH ?>views/js/jquery-1.9.0.min.js"></script>
@@ -68,6 +66,17 @@
 				$this = $(this);
 				if (!parseInt(parent)) parent = 0;
 				$('input[name="parent"]').val(parent);
+			});
+
+			$('#error-comment').dialog({
+				autoOpen: false,
+				width: 450,
+				modal: true,
+				title: 'сообщение об ошибке',
+				resizable: false,
+				draggable: false,
+				show: {effect: 'blind', duration: 700},
+				hide: {effect: 'explode', duration: 700},
 			});
 
 			$("#form-wrap").dialog({
@@ -103,29 +112,49 @@
 									parent: parent,
 									productId: productId
 								},
+								beforeSend: function() {
+									$('#loader').fadeIn();
+								},
 								success: function(res) {
 									var result = JSON.parse(res);
-									var showComment = '<li class="new-comment" id="comment-"' + result.id + '>' + result.code + '</li>';
-									if (parent == 0) {
-										// если это не ответ
-										$('ul.comments').append(showComment);
-									} else {
-										// если это ответ
-										// раходим родителя LI
-										var parentComment = $this.closest('li');
-										// есть ли ответы
-										var childs = parentComment.children('ul');
-										if (childs.length) {
-											// если ответы есть
-											childs.append(showComment);
+
+									console.log(result);
+
+									if (result.answer == 'Комментарий добавлен') {
+										// если комментарий добавлен
+										var showComment = '<li class="new-comment" id="comment-' + result.id + '">' + result.code + '</li>';
+										if (parent == 0) {
+											// если это не ответ
+											$('ul.comments').append(showComment);
 										} else {
-											// если ответов нет
-											parentComment.append('<ul>' + showComment + '</ul>');
+											// если это ответ
+											// находим родителя LI
+											var parentComment = $this.closest('li');
+											// есть ли ответы?
+											var childs = parentComment.children('ul');
+											if (childs.length) {
+												// если ответы есть
+												childs.append(showComment);
+											} else {
+												// если ответов нет
+												parentComment.append('<ul>' + showComment + '</ul>');
+											}
 										}
+										$('#comment-' + result.id).delay(1000).show('shake', 1000);
+									} else {
+										// если комментарий не добавлен
+										$('#error-comment').text(result.answer);
+										$('#error-comment').delay(1000).queue(function() {
+											$(this).dialog('open');
+											$(this).dequeue();
+										});
 									}
 								},
 								error: function() {
 									alert('Ошибка!');
+								},
+								complete: function() {
+									$('#loader').delay(1000).fadeOut();
 								}
 							});
 					},

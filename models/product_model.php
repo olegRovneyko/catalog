@@ -37,3 +37,15 @@ function get_comments($product_id)
 
 	return $comments;
 }
+
+/**
+ * получении колличества комментариев
+*/
+function count_comments($product_id)
+{
+	global $connection;
+	$query = 'SELECT COUNT(*) FROM comments WHERE comment_product = ' . $product_id;
+	$res = mysqli_query($connection, $query);
+	$row = mysqli_fetch_row($res);
+	return $row[0];
+}

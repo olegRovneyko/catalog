@@ -53,7 +53,7 @@ function get_last_comment($comment_id)
 	$comment_html = '<div class="comment-content">';
 
 	$comment_html .= '<div class="comment-meta">';
-	$comment_html .= '<em><strong><span>' . htmlspecialchars($comment['comment_author']) . '</span></strong>' . $comment['created'] . '</em>';
+	$comment_html .= '<em><strong><span>' . htmlspecialchars($comment['comment_author']) . '</span></strong> ' . $comment['created'] . '</em>';
 	$comment_html .= '</div>';
 
 	$comment_html .= '<div>';

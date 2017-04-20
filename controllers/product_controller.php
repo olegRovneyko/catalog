@@ -12,6 +12,9 @@ $id = $get_one_product['parent'];
 
 // получаем ID товара
 $product_id = $get_one_product['id'];
+
+// получаем кол-во комментариев к товару
+$count_comments = count_comments($product_id);
 // получаем комментарии к товару
 $get_comments = get_comments($product_id);
 // строим дерево
