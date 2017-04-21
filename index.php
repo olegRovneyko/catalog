@@ -14,7 +14,8 @@ $routes = array(
 	array('url' => '~^page/(?P<page_alias>[0-9a-z-]+)?~i', 'view' => 'page'),
 	array('url' => '~^add_comment$~i', 'view' => 'add_comment'),
 	array('url' => '~^login$~i', 'view' => 'login'),
-	array('url' => '~^logout$~i', 'view' => 'logout')
+	array('url' => '~^logout$~i', 'view' => 'logout'),
+	array('url' => '~^fogot$~i', 'view' => 'fogot')
 );
 
 $url = ltrim($_SERVER['REQUEST_URI'], '/');

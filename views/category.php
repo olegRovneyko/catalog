@@ -54,5 +54,6 @@
 			});
 		});
 	</script>
+	<script src="<?= PATH ?>views/js/workscripts.js"></script>
 </body>
 </html>
