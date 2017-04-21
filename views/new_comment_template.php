@@ -1,4 +1,4 @@
-<div class="comment-content">
+<div class="comment-content<?php if ($comment['is_admin']) echo ' manager' ?>">
 	<div class="comment-meta">
 		<em>
 			<strong>

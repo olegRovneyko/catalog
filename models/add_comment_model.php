@@ -3,7 +3,7 @@
 defined('CATALOG') or die('Access denied');
 
 /**
- * получение комментариев
+ * добавление комментариев
  */
 function add_comment()
 {
@@ -12,6 +12,7 @@ function add_comment()
 	$comment_text = trim(mysqli_real_escape_string($connection, $_POST['commentText']));
 	$parent = (int)$_POST['parent'];
 	$comment_product = (int)$_POST['productId'];
+	$is_admin = isset($_SESSION['auth']['is_admin']) ? $_SESSION['auth']['is_admin'] : 0;
 
 	// если нет Id товара
 	if (!$comment_product) {
@@ -25,8 +26,8 @@ function add_comment()
 		return json_encode($res);
 	}
 
-	$query = "INSERT INTO comments (comment_author, comment_text, parent, comment_product)
-		VALUES ('$comment_author', '$comment_text', $parent, $comment_product)";
+	$query = "INSERT INTO comments (comment_author, comment_text, parent, comment_product, is_admin)
+		VALUES ('$comment_author', '$comment_text', $parent, $comment_product, $is_admin)";
 	mysqli_query($connection, $query);
 	if (mysqli_affected_rows($connection) > 0) {
 		$comment_id = mysqli_insert_id($connection);

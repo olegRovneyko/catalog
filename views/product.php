@@ -32,10 +32,17 @@
 
 			<div id="form-wrap">
 				<form action="<?= PATH ?>add_comment" method="POST" class="form">
+				<?php if (isset($_SESSION['auth']['user'])) : ?>
+					<p style="display: none">
+						<label for="comment_author">Имя:</label>
+						<input type="text" name="comment_author" id="comment_author" value="<?= htmlspecialchars($_SESSION['auth']['user']) ?>">
+					</p>
+				<?php else : ?>
 					<p>
 						<label for="comment_author">Имя:</label>
 						<input type="text" name="comment_author" id="comment_author">
 					</p>
+				<?php endif; ?>
 					<p>
 						<label for="comment_text">Текст:</label>
 						<textarea name="comment_text" id="comment_text" cols="30" rows="5"></textarea>
