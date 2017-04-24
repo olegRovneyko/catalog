@@ -9,10 +9,12 @@ include 'models/' . $view . '_model.php';
 if (isset($_POST['fpass'])) {
 	forgot();
 	redirect();
+} elseif (isset($_GET['forgot'])) {
+	access_change();
+	$breadcrumbs = '<a href="' . PATH . '">Главная</a> / Восстановление пароля';
+	include 'views/' . $view . '.php';
 } else {
 	redirect(PATH);
 }
 
-//$breadcrumbs = '<a href="' . PATH . '">Главная</a> / Восстановление пароля';
 
-//include 'views/' . $view . '.php';
