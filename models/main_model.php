@@ -15,9 +15,13 @@ function print_arr($arr)
  * [redirect description]
  * @return [type] [description]
  */
-function redirect()
+function redirect($http = false)
 {
-	$redirect = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : PATH;
+	if ($http) {
+		$redirect = $http;
+	} else {
+		$redirect = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : PATH;
+	}
 	header('Location: ' . $redirect);
 	exit;
 }

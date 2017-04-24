@@ -23,6 +23,11 @@
 			<div class="error"><?= $_SESSION['auth']['errors'] ?></div>
 			<?php unset($_SESSION['auth']); ?>
 		<?php endif; ?>
+
+		<?php if (isset($_SESSION['auth']['ok'])) : ?>
+			<div class="ok"><?= $_SESSION['auth']['ok'] ?></div>
+			<?php unset($_SESSION['auth']); ?>
+		<?php endif; ?>
 	
 	<?php else : ?>
 		<p>Добро пожаловать, <strong><?= htmlspecialchars($_SESSION['auth']['user']) ?></strong></p>
