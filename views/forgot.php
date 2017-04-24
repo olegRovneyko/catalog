@@ -17,7 +17,25 @@
 			<br>
 			<hr>
 			<h3>Восстановление пароля</h3>
-			<?php if (isset($_SESSION['forgot']['errors'])) : ?>
+			<?php if (isset($_SESSION['forgot']['change_error'])) : ?>
+				<div class="error"><?= $_SESSION['forgot']['change_error'] ?></div>
+				<?php unset($_SESSION['forgot']) ?>
+				<div class="auth form">
+					<form action="<?= PATH ?>forgot" method="POST">
+						<p>
+							<label for="new_password">Введите новый пароль: </label>
+							<input type="text" name="new_password" id="new_password">
+						</p>
+						<input type="hidden" name="hash" value="<?= $_GET['forgot'] ?>">
+						<p class="submit">
+							<input type="submit" value="Изменить пароль" name="cange_pass">
+						</p>
+					</form>
+				</div>
+			<?php elseif (isset($_SESSION['forgot']['ok'])) : ?>
+				<div class="ok"><?= $_SESSION['forgot']['ok'] ?></div>
+				<?php unset($_SESSION['forgot']['ok']) ?>
+			<?php elseif (isset($_SESSION['forgot']['errors'])) : ?>
 				<div class="error"><?= $_SESSION['forgot']['errors'] ?></div>
 				<?php unset($_SESSION['forgot']['errors']) ?>
 			<?php else : ?>
@@ -29,7 +47,7 @@
 						</p>
 						<input type="hidden" name="hash" value="<?= $_GET['forgot'] ?>">
 						<p class="submit">
-							<input type="submit" value="Изменить пароль" name="cange_pass">
+							<input type="submit" value="Изменить пароль" name="change_pass">
 						</p>
 					</form>
 				</div>
