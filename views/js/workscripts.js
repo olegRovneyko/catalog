@@ -1,13 +1,13 @@
 $(function() {
-	$('#fogot-link').click(function() {
+	$('#forgot-link').click(function() {
 		$('#auth').fadeOut(300, function() {
-			$('#fogot').fadeIn();
+			$('#forgot').fadeIn();
 		});
 		return false;
 	});
 
 	$('#auth-link').click(function() {
-		$('#fogot').fadeOut(300, function() {
+		$('#forgot').fadeOut(300, function() {
 			$('#auth').fadeIn();
 		});
 	});

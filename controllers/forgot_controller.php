@@ -7,7 +7,7 @@ include 'models/' . $view . '_model.php';
 
 // запрошено восстановление пароля
 if (isset($_POST['fpass'])) {
-	fogot();
+	forgot();
 }
 
 //$breadcrumbs = '<a href="' . PATH . '">Главная</a> / Восстановление пароля';
