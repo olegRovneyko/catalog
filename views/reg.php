@@ -35,13 +35,22 @@
 					</p>
 					<p>
 						<label for="password_reg">пароль:</label>
-						<input type="password_reg" name="password" id="password_reg">
+						<input type="password_reg" name="password_reg" id="password_reg">
 					</p>
 					<p class="submit">
 						<input type="submit" value="зарегистрироваться" name="reg">
 					</p>
 				</form>
 			</div>
+			<br>
+			<?php if (isset($_SESSION['reg']['errors'])) : ?>
+				<div class="error">
+					<?php
+						echo $_SESSION['reg']['errors'];
+						unset($_SESSION['reg']);
+					?>
+				</div>
+			<?php endif; ?>
 		</div>
 	</div>
 	<script src="<?= PATH ?>views/js/jquery-1.9.0.min.js"></script>
