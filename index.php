@@ -15,7 +15,8 @@ $routes = array(
 	array('url' => '~^add_comment$~i', 'view' => 'add_comment'),
 	array('url' => '~^login$~i', 'view' => 'login'),
 	array('url' => '~^logout$~i', 'view' => 'logout'),
-	array('url' => '~^forgot~i', 'view' => 'forgot')
+	array('url' => '~^forgot~i', 'view' => 'forgot'),
+	array('url' => '~^reg~i', 'view' => 'reg')
 );
 
 $url = ltrim($_SERVER['REQUEST_URI'], '/');

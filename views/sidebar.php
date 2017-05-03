@@ -17,7 +17,7 @@
 				<input type="submit" value="войти" name="log_in">
 			</p>
 		</form>
-		<p><a href="#">регистрация</a> | <a href="#" id="forgot-link">забыли пароль?</a></p>
+		<p><a href="<?= PATH ?>reg">регистрация</a> | <a href="#" id="forgot-link">забыли пароль?</a></p>
 	
 		<?php if (isset($_SESSION['auth']['errors'])) : ?>
 			<div class="error"><?= $_SESSION['auth']['errors'] ?></div>

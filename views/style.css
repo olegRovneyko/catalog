@@ -227,3 +227,15 @@ p.submit {
 #forgot {
 	display: none;
 }
+
+.reg_check,
+.reg_cross,
+.reg_loader {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+}
+
+.reg_check {background-image: url(img/check.png)}
+.reg_cross {background-image: url(img/cross.png)}
+.reg_loader {background-image: url(img/loader2.gif)}
