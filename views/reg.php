@@ -25,12 +25,12 @@
 					</p>
 					<p>
 						<label for="email_reg">e-mail:</label>
-						<input type="text" name="email_reg" id="email_reg">
+						<input type="text" class="access" name="email_reg" data-field="email" id="email_reg">
 						<span></span>
 					</p>
 					<p>
 						<label for="login_reg">логин:</label>
-						<input type="text" name="login_reg" id="login_reg">
+						<input type="text" class="access" name="login_reg" data-field="login" id="login_reg">
 						<span></span>
 					</p>
 					<p>
@@ -50,6 +50,33 @@
 	<script>
 		$(document).ready(function() {
 			$(".category").dcAccordion();
+
+			$("[data-field]").change(function() {
+				var $this = $(this);
+				var val = $.trim($this.val());
+				var dataField = $this.attr('data-field');
+				var span = $this.next();
+
+				if (val == '') {
+					span.removeClass().addClass('reg_cross');
+				} else {
+					span.removeClass().addClass('reg_loader');
+					$.ajax({
+						url: '<?= PATH ?>reg',
+						type: 'POST',
+						data: {val: val, dataField: dataField},
+						success: function(res) {
+							if (res === 'no') {
+								span.removeClass().addClass('reg_cross');
+							} else {
+								span.removeClass().addClass('reg_check');
+							}
+						}
+					});
+				}
+
+				
+			});
 		});
 	</script>
 	<script src="<?= PATH ?>views/js/workscripts.js"></script>
