@@ -17,40 +17,41 @@
 			<br>
 			<hr>
 			<h3>Регистрация</h3>
-			<div class="form">
-				<form action="<?= PATH ?>reg" method="POST">
-					<p>
-						<label for="name_reg">имя:</label>
-						<input type="text" name="name_reg" id="name_reg">
-					</p>
-					<p>
-						<label for="email_reg">e-mail:</label>
-						<input type="text" class="access" name="email_reg" data-field="email" id="email_reg">
-						<span></span>
-					</p>
-					<p>
-						<label for="login_reg">логин:</label>
-						<input type="text" class="access" name="login_reg" data-field="login" id="login_reg">
-						<span></span>
-					</p>
-					<p>
-						<label for="password_reg">пароль:</label>
-						<input type="password_reg" name="password_reg" id="password_reg">
-					</p>
-					<p class="submit">
-						<input type="submit" value="зарегистрироваться" name="reg">
-					</p>
-				</form>
-			</div>
-			<br>
-			<?php if (isset($_SESSION['reg']['errors'])) : ?>
-				<div class="error">
-					<?php
-						echo $_SESSION['reg']['errors'];
-						unset($_SESSION['reg']);
-					?>
+			<?php if (isset($_SESSION['reg']['success'])) : ?>
+				<div class="ok"><?= $_SESSION['reg']['success']; ?></div>
+			<?php elseif (!isset($_SESSION['auth']['user'])) : ?>
+				<div class="form">
+					<form action="<?= PATH ?>reg" method="POST">
+						<p>
+							<label for="name_reg">имя:</label>
+							<input type="text" name="name_reg" id="name_reg">
+						</p>
+						<p>
+							<label for="email_reg">e-mail:</label>
+							<input type="text" class="access" name="email_reg" data-field="email" id="email_reg">
+							<span></span>
+						</p>
+						<p>
+							<label for="login_reg">логин:</label>
+							<input type="text" class="access" name="login_reg" data-field="login" id="login_reg">
+							<span></span>
+						</p>
+						<p>
+							<label for="password_reg">пароль:</label>
+							<input type="password_reg" name="password_reg" id="password_reg">
+						</p>
+						<p class="submit">
+							<input type="submit" value="зарегистрироваться" name="reg">
+						</p>
+					</form>
 				</div>
-			<?php endif; ?>
+				<br>
+				<?php if (isset($_SESSION['reg']['errors'])) : ?>
+					<div class="error">
+						<?= $_SESSION['reg']['errors'];	?>
+					</div>
+				<?php endif; ?>
+			<?php endif; unset($_SESSION['reg']); ?>
 		</div>
 	</div>
 	<script src="<?= PATH ?>views/js/jquery-1.9.0.min.js"></script>

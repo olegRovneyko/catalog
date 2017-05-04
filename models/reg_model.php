@@ -36,6 +36,7 @@ function registration()
 	$name = trim($_POST['name_reg']);
 	$email = trim($_POST['email_reg']);
 	$password = trim($_POST['password_reg']);
+	$post = array($login, $email);
 
 	if (empty($login)) $errors .= '<li>Не указан логин</li>';
 	if (empty($name)) $errors .= '<li>Не указано имя</li>';
@@ -61,7 +62,7 @@ function registration()
 		$k = array();
 		while ($row = mysqli_fetch_assoc($res)) {
 			// берем то, что совпадает с глобальным массивом POST
-			$data = array_intersect($row, $_POST);
+			$data = array_intersect($row, $post);
 			foreach ($data as $key => $val) {
 				$k[$key] = $key;
 			}
@@ -69,7 +70,18 @@ function registration()
 		foreach ($k as $key => $val) {
 			$errors .= '<li>' . $fields[$key] . '</li>';
 		}
-		$_SESSION['reg']['errors'] = 'Віберите другие значения для полей: <ul>' . $errors . '</ul>';
+		$_SESSION['reg']['errors'] = 'Выберите другие значения для полей: <ul>' . $errors . '</ul>';
 		return;
+	}
+
+	$query = "INSERT INTO users (login, password, name, email) VALUES ('$login', '$password', '$name', '$email')";
+	$res = mysqli_query($connection, $query);
+	if (mysqli_affected_rows($connection) > 0) {
+		$_SESSION['reg']['success'] = 'Регистрация прошла успешно';
+		$_SESSION['auth']['user'] = stripslashes($name);
+		$_SESSION['auth']['is_admin'] = 0;
+	} else {
+		// ошибка добавления новой записи
+		$_SESSION['reg']['errors'] = 'Ошибка регистрации';
 	}
 }
