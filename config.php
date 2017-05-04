@@ -8,6 +8,7 @@ define('DBPASS', '');
 define('DBNAME', 'apple');
 define('PATH', 'http://catalog/');
 define('PERPAGE', 5);
+define('VIEW', 'views/tpl1/');
 $option_perpage = array(5, 10, 15);
 
 $connection = @mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME) or die('Нет соединения с БД');

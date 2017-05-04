@@ -96,7 +96,7 @@ function array_to_string($data, $template = 'category_template.php')
 function categories_to_template($data, $template)
 {
 	ob_start();
-	include 'views/' . $template;
+	include VIEW . $template;
 	return ob_get_clean();
 }
 

@@ -9,10 +9,10 @@ if (!isset($page_alias)) $page_alias = 'index';
 $page = get_one_page($page_alias);
 
 if (!$page) {
-	include 'views/404.php';
+	include VIEW . '404.php';
 	exit;
 }
 
 $breadcrumbs = '<a href="' . PATH . '">Главная</a> / ' . $page['title'];
 
-include 'views/' . $view . '.php';
+include VIEW . $view . '.php';

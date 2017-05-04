@@ -52,7 +52,7 @@ function get_last_comment($comment_id)
 	$comment = mysqli_fetch_assoc($res);
 
 	ob_start();
-	include 'views/new_comment_template.php';
+	include VIEW . 'new_comment_template.php';
 	$comment_html = ob_get_clean();
 
 	$res = array('answer' => 'Комментарий добавлен', 'code' => $comment_html, 'id' => $comment_id);

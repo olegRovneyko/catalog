@@ -14,7 +14,7 @@ if (isset($_POST['fpass'])) {
 } elseif (isset($_GET['forgot'])) {
 	access_change();
 	$breadcrumbs = '<a href="' . PATH . '">Главная</a> / Восстановление пароля';
-	include 'views/' . $view . '.php';
+	include VIEW . $view . '.php';
 } elseif (isset($_POST['change_pass'])) {
 	change_forgot_password();
 	redirect(PATH . 'forgot/?forgot=' . $_POST['hash']);

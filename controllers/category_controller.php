@@ -44,4 +44,4 @@ $pagination = pagination($page, $count_pages);
 
 $products = get_product($ids, $start_pos, $perpage);
 
-include 'views/' . $view . '.php';
+include VIEW . $view . '.php';

@@ -24,5 +24,5 @@ $comments = array_to_string($comments_tree, 'comments_template.php');
 
 include 'libs/breadcrumbs.php';
 
-include 'views/' . $view . '.php';
+include VIEW . $view . '.php';
 

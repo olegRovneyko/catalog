@@ -4,6 +4,7 @@ error_reporting(E_ALL);
 session_start();
 
 define('CATALOG', true);
+include_once 'config.php';
 
 $product_alias = null;
 
@@ -29,11 +30,10 @@ foreach ($routes as $route) {
 }
 
 if (empty($match)) {
-	include 'views/404.php';
+	include VIEW . '404.php';
 	exit;
 }
 
 extract($match);
 
-include_once 'config.php';
 include 'controllers/' . $view . '_controller.php';
